@@ -68,7 +68,8 @@ section.active{display:block;}
   color:transparent;
   font-size:32px;
 }
-.hero p{color:#fff;font-size:16px;margin-bottom:50px;}
+.hero p{color:#fff;font-size:16px;margin-bottom:10px;}
+.hero .subtext{color:#fff;font-size:14px;margin-top:10px;}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;}
 .value-card{background:rgba(0,0,0,0.4);border-radius:18px;padding:16px;box-shadow:0 0 20px #000;transition:.2s;}
 .value-card:hover{transform:translateY(-6px);}
@@ -155,8 +156,7 @@ section.active{display:block;}
     <img src="https://tr.rbxcdn.com/180DAY-c750c0a2010cecc8b6dc12fb253428a2/768/432/Image/Webp/noFilter">
     <h1>Welcome to Pet Farms Values Trade Vault</h1>
     <p>Check values, trade smart, win more!</p>
-<p style="color:#fff;font-size:14px;margin-top:10px;">1 value = 1k gems 💎</p>
-
+    <p class="subtext">1 value = 1k gems 💎</p>
   </div>
 </section>
 
@@ -224,7 +224,6 @@ const pets = [
   { name: "OG Serpent", img: "OG_Serpant.png", base: 6, demand: 5 }
 ];
 
-
 const valueGrid = document.getElementById("valueGrid");
 pets.forEach(p => {
   const card = document.createElement("div");
@@ -276,28 +275,21 @@ function updateTotals() {
   const youVals = getValues("you");
   const themVals = getValues("them");
 
-  const maxLen = Math.max(youVals.length, themVals.length);
-  let score = 0;
+  const youTotal = youVals.reduce((a,b)=>a+b,0);
+  const themTotal = themVals.reduce((a,b)=>a+b,0);
 
-  for(let i=0;i<maxLen;i++){
-    const youV = youVals[i]||0;
-    const themV = themVals[i]||0;
-    const diff = youV - themV;
+  const diff = youTotal - themTotal;
 
-    if(diff > 0.5) score--;       // Slightly higher → Lose
-    else if(diff < -0.5) score++; // Lower → Win
-    else score += 0;              // Tiny L or close → Fair
-  }
-
-  let resText = "Fair 🤝", resColor = "var(--fair)";
-  if(score > 0){ resText="Win 🤑"; resColor="var(--win)"; }
-  else if(score < 0){ resText="Lose 💀"; resColor="var(--lose)"; }
+  let resText = "Fair 🤝", resColor="var(--fair)";
+  if(diff >= 0.6) resText="Lose 💀", resColor="var(--lose)";
+  else if(diff <= -0.6) resText="Win 🤑", resColor="var(--win)";
+  else resText="Fair 🤝", resColor="var(--fair)";
 
   document.getElementById("res").textContent = resText;
   document.getElementById("res").style.color = resColor;
 
-  document.getElementById("yt").textContent = youVals.reduce((a,b)=>a+b,0).toFixed(2);
-  document.getElementById("tt").textContent = themVals.reduce((a,b)=>a+b,0).toFixed(2);
+  document.getElementById("yt").textContent = youTotal.toFixed(2);
+  document.getElementById("tt").textContent = themTotal.toFixed(2);
 }
 
 function show(id){
@@ -309,6 +301,4 @@ updateTotals();
 </script>
 
 </body>
-
 </html>
-
