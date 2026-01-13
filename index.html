@@ -6,41 +6,40 @@
 <link rel="icon" href="https://tr.rbxcdn.com/180DAY-123646d05b93a274aa7d25dd13359704/256/256/Image/Webp/noFilter">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: linear-gradient(135deg,#8a2be2,#2979ff,#1de9b6);
-  --panel: #11152a;
-  --card: #161b36;
-  --text: #e8ecf1;
-  --muted: #a1aacf;
-  --accent: #8a2be2;
-  --win: #3cff9a;
-  --lose: #ff4c4c;
-  --fair: #ffeb3b;
+:root{
+  --bg:linear-gradient(135deg,#8a2be2,#2979ff,#1de9b6);
+  --panel:#11152a;
+  --card:#161b36;
+  --text:#e8ecf1;
+  --muted:#a1aacf;
+  --accent:#8a2be2;
+  --win:#3cff9a;
+  --lose:#ff4c4c;
+  --fair:#ffeb3b;
 }
-
-*{box-sizing:border-box;}
+*{box-sizing:border-box}
 body{
   margin:0;
-  font-family:'Inter',sans-serif;
+  font-family:Inter,sans-serif;
   background:var(--bg);
   background-size:400% 400%;
   animation:bgAnim 15s ease infinite;
-  color:var(--text);
+  color:var(--text)
 }
 @keyframes bgAnim{
-  0%{background-position:0 0;}
-  50%{background-position:100% 100%;}
-  100%{background-position:0 0;}
+  0%{background-position:0 0}
+  50%{background-position:100% 100%}
+  100%{background-position:0 0}
 }
 nav{
   display:flex;
   justify-content:space-between;
   align-items:center;
   padding:16px 40px;
-  background:rgba(0,0,0,0.5);
-  border-radius:0 0 20px 20px;
+  background:rgba(0,0,0,.5);
+  border-radius:0 0 20px 20px
 }
-nav b{font-size:18px;}
+nav b{font-size:18px}
 nav button{
   background:none;
   border:none;
@@ -48,96 +47,95 @@ nav button{
   margin-left:20px;
   cursor:pointer;
   font-size:14px;
-  font-weight:600;
-  transition:0.2s;
+  font-weight:600
 }
-nav button:hover{color:white;}
-section{
-  display:none;
-  padding:40px;
-  max-width:1400px;
-  margin:auto;
-}
-section.active{display:block;}
-.hero{text-align:center;}
-.hero img{width:120px;border-radius:20px;box-shadow:0 0 40px #fff;}
+nav button:hover{color:#fff}
+section{display:none;padding:40px;max-width:1400px;margin:auto}
+section.active{display:block}
+.hero{text-align:center}
+.hero img{width:120px;border-radius:20px;box-shadow:0 0 40px #fff}
 .hero h1{
   margin:20px 0 10px;
   background:linear-gradient(90deg,#8a2be2,#2979ff,#1de9b6);
   -webkit-background-clip:text;
   color:transparent;
-  font-size:32px;
+  font-size:32px
 }
-.hero p{color:#fff;font-size:16px;margin-bottom:10px;}
-.hero .subtext{color:#fff;font-size:14px;margin-top:10px;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;}
-.value-card{background:rgba(0,0,0,0.4);border-radius:18px;padding:16px;box-shadow:0 0 20px #000;transition:.2s;}
-.value-card:hover{transform:translateY(-6px);}
-.value-card img{width:100%;border-radius:14px;}
-.value-card b{display:block;margin-top:10px;font-size:16px;}
-.value-card span{color:#fff;font-size:14px;}
-.trade{display:flex;flex-wrap:wrap;gap:30px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.value-card{background:rgba(0,0,0,.4);border-radius:18px;padding:16px}
+.value-card img{width:100%;border-radius:14px}
+.trade{display:flex;flex-wrap:wrap;gap:30px}
 .trade-side{
   flex:1;
-  background:rgba(0,0,0,0.5);
+  background:rgba(0,0,0,.5);
   border-radius:24px;
   padding:25px;
-  min-width:280px;
-  box-shadow:0 0 50px #000;
+  min-width:280px
 }
-.trade-side h3{text-align:center;margin-bottom:20px;}
 .pet{
   display:flex;
   gap:12px;
   align-items:center;
-  background:rgba(0,0,0,0.3);
+  background:rgba(0,0,0,.3);
   border-radius:14px;
   padding:12px;
   margin-bottom:10px;
-  transition:.2s;
-  position:relative;
   cursor:pointer;
+  position:relative
 }
-.pet img{width:60px;border-radius:12px;box-shadow:0 0 20px #fff;}
+.pet img{width:60px;border-radius:12px;box-shadow:0 0 20px #fff}
 .pet .overlay{
-  position:absolute;top:4px;right:4px;font-size:14px;font-weight:bold;color:#fff;padding:2px 5px;border-radius:4px;background:goldenrod;
+  position:absolute;
+  top:4px;
+  right:4px;
+  font-size:14px;
+  font-weight:bold;
+  color:#fff;
+  padding:2px 5px;
+  border-radius:4px;
+  background:goldenrod
 }
-.pet div{flex:1;}
-.pet .value{font-weight:bold;}
-.total{text-align:right;margin-top:12px;font-weight:600;font-size:16px;}
+.total{text-align:right;margin-top:12px;font-weight:600}
 .add{
   width:64px;height:64px;
   border:none;
   border-radius:12px;
   background:var(--accent);
   cursor:pointer;
-  transition:.2s;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  font-weight:600;color:black;
+  font-weight:600;
+  color:black
 }
-.add:hover{filter:brightness(1.2);}
-.result{text-align:center;font-size:26px;margin-top:30px;}
+.result{text-align:center;font-size:26px;margin-top:30px}
 .modal{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,0.75);
-  display:flex;justify-content:center;align-items:center;
-  opacity:0;pointer-events:none;transition:opacity .25s ease;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  pointer-events:none
 }
-.modal.show{opacity:1;pointer-events:auto;}
+.modal.show{opacity:1;pointer-events:auto}
 .modal-box{
-  background:rgba(0,0,0,0.8);
-  padding:25px;border-radius:22px;width:320px;
-  box-shadow:0 0 60px #000;
-  transform:scale(.9);transition:transform .25s;
+  background:rgba(0,0,0,.8);
+  padding:25px;
+  border-radius:22px;
+  width:320px
 }
-.modal.show .modal-box{transform:scale(1);}
-.modal-box h3{margin-top:0;color:white;}
-.modal-box label{display:block;margin-top:10px;}
-.modal-box select,input{width:100%;padding:8px;margin-top:5px;border-radius:10px;border:none;background:#222;color:white;}
-.add:active{transform:scale(.97);}
+.modal-box select,.modal-box input{
+  width:100%;
+  padding:8px;
+  margin-top:5px;
+  border-radius:10px;
+  border:none;
+  background:#222;
+  color:white
+}
 </style>
 </head>
 <body>
@@ -156,7 +154,7 @@ section.active{display:block;}
     <img src="https://tr.rbxcdn.com/180DAY-c750c0a2010cecc8b6dc12fb253428a2/768/432/Image/Webp/noFilter">
     <h1>Welcome to Pet Farms Values Trade Vault</h1>
     <p>Check values, trade smart, win more!</p>
-    <p class="subtext">1 value = 1k gems 💎</p>
+    <p>1 value = 1k gems 💎</p>
   </div>
 </section>
 
@@ -211,97 +209,84 @@ section.active{display:block;}
 </div>
 
 <script>
-const pets = [
-  { name: "OG Dominus Huge", img: "HugeOgDominus.png", base: 20, demand: 10 },
-  { name: "Mouse Huge", img: "HugeMouse.jpg", base: 5, demand: 3 },
-  { name: "Bird Huge", img: "HugeBird.jpg", base: 7, demand: 4 },
-  { name: "Huge Turtle", img: "HugeTurtle.jpg", base: 9, demand: 6 },
-  { name: "Huge Reindeer", img: "HugeReindeer.jpg", base: 8, demand: 8 },
-  { name: "Huge Magma Dragon", img: "HugeMagmaDragon.jpg", base: 15, demand: 10 },
-  { name: "Huge Scorpion", img: "HugeScorpion.jpg", base: 10, demand: 7 },
-  { name: "OG Dog", img: "OG_Dog.png", base: 2, demand: 1 },
-  { name: "OG Bunny", img: "OG_Bunny.png", base: 4, demand: 3 },
-  { name: "OG Serpent", img: "OG_Serpant.png", base: 6, demand: 5 }
+const pets=[
+  {name:"OG Dominus Huge",img:"HugeOgDominus.png",base:20,demand:10},
+  {name:"Mouse Huge",img:"HugeMouse.jpg",base:5,demand:3},
+  {name:"Bird Huge",img:"HugeBird.jpg",base:7,demand:4},
+  {name:"Huge Turtle",img:"HugeTurtle.jpg",base:9,demand:6},
+  {name:"Huge Reindeer",img:"HugeReindeer.jpg",base:8,demand:8},
+  {name:"Huge Magma Dragon",img:"HugeMagmaDragon.jpg",base:15,demand:10},
+  {name:"Huge Scorpion",img:"HugeScorpion.jpg",base:10,demand:7},
+  {name:"OG Dog",img:"OG_Dog.png",base:2,demand:1},
+  {name:"OG Bunny",img:"OG_Bunny.png",base:4,demand:3},
+  {name:"OG Serpent",img:"OG_Serpant.png",base:6,demand:5},
+  {name:"Magma Griffin",img:"MagmaGriffen.png",base:1,demand:3}
 ];
 
-const valueGrid = document.getElementById("valueGrid");
-pets.forEach(p => {
-  const card = document.createElement("div");
-  card.className = "value-card";
-  card.innerHTML = `<img src="${p.img}"><b>${p.name}</b><span>Base: ${p.base} | Demand: ${p.demand}/10</span>`;
-  valueGrid.appendChild(card);
-});
+const valueGrid=document.getElementById("valueGrid");
+const petSelect=document.getElementById("petSelect");
 
-const petSelect = document.getElementById("petSelect");
-function populatePetSelect() {
-  petSelect.innerHTML = "";
-  pets.forEach((p,i) => {
-    const option = document.createElement("option");
-    option.value = i;
-    option.textContent = p.name;
-    petSelect.appendChild(option);
+function rebuild(){
+  valueGrid.innerHTML="";
+  petSelect.innerHTML="";
+  pets.forEach((p,i)=>{
+    const c=document.createElement("div");
+    c.className="value-card";
+    c.innerHTML=`<img src="${p.img}"><b>${p.name}</b><span>Base: ${p.base} | Demand: ${p.demand}/10</span>`;
+    valueGrid.appendChild(c);
+    const o=document.createElement("option");
+    o.value=i;
+    o.textContent=p.name;
+    petSelect.appendChild(o);
   });
 }
-populatePetSelect();
+rebuild();
 
-let currentSide = "you";
-const modal = document.getElementById("modal");
-modal.addEventListener("click", e => { if(e.target === modal) modal.classList.remove("show"); });
-function openModal(side) { currentSide = side; modal.classList.add("show"); }
+let currentSide="you";
+const modal=document.getElementById("modal");
+modal.onclick=e=>{if(e.target===modal)modal.classList.remove("show")};
 
-function addPet() {
-  const p = pets[+petSelect.value];
-  const amt = +document.getElementById("amt").value || 1;
-  const sig = +document.getElementById("signed").value;
-  const gold = +document.getElementById("gold").value;
-  const boost = (sig > 1 && gold > 1) ? 2.7 : sig*gold;
-  const value = p.base * amt * boost;
+function openModal(side){
+  currentSide=side;
+  modal.classList.add("show");
+}
 
-  const petDiv = document.createElement("div");
-  petDiv.className = "pet";
-  let overlay = "";
-  if(sig>1) overlay += "✍️ ";
-  if(gold>1) overlay += "💰";
-  petDiv.innerHTML = `<img src="${p.img}">${overlay ? `<div class="overlay">${overlay}</div>` : ""}<div><b>${p.name} x${amt}</b> Demand ${p.demand}/10</div><span class="value">${value.toFixed(2)}</span>`;
+function addPet(){
+  const p=pets[+petSelect.value];
+  const amtVal=+amt.value||1;
+  const sig=+signed.value;
+  const goldVal=+gold.value;
+  const boost=(sig>1&&goldVal>1)?2.7:sig*goldVal;
+  const val=(p.base*amtVal*boost).toFixed(2);
 
-  petDiv.addEventListener("click", () => { petDiv.remove(); updateTotals(); });
-  document.querySelector(`#${currentSide} .list`).appendChild(petDiv);
+  let overlay="";
+  if(sig>1)overlay+="✍️ ";
+  if(goldVal>1)overlay+="💰";
+
+  const el=document.createElement("div");
+  el.className="pet";
+  el.innerHTML=`<img src="${p.img}">${overlay?`<div class="overlay">${overlay}</div>`:""}<div><b>${p.name} x${amtVal}</b> Demand ${p.demand}/10</div><span class="value">${val}</span>`;
+  el.onclick=()=>{el.remove();updateTotals()};
+  document.querySelector(`#${currentSide} .list`).appendChild(el);
   modal.classList.remove("show");
   updateTotals();
 }
 
-function updateTotals() {
-  const getValues = side => [...document.querySelectorAll(`#${side} .pet`)].map(p => Number(p.querySelector(".value").textContent));
-  const youVals = getValues("you");
-  const themVals = getValues("them");
-
-  const youTotal = youVals.reduce((a,b)=>a+b,0);
-  const themTotal = themVals.reduce((a,b)=>a+b,0);
-
-  const diff = youTotal - themTotal;
-
-  let resText = "Fair 🤝", resColor="var(--fair)";
-  if(diff >= 0.6) resText="Lose 💀", resColor="var(--lose)";
-  else if(diff <= -0.6) resText="Win 🤑", resColor="var(--win)";
-  else resText="Fair 🤝", resColor="var(--fair)";
-
-  document.getElementById("res").textContent = resText;
-  document.getElementById("res").style.color = resColor;
-
-  document.getElementById("yt").textContent = youTotal.toFixed(2);
-  document.getElementById("tt").textContent = themTotal.toFixed(2);
+function updateTotals(){
+  const sum=s=>[...document.querySelectorAll(`#${s} .value`)].reduce((a,b)=>a+ +b.textContent,0);
+  const y=sum("you");
+  const t=sum("them");
+  yt.textContent=y.toFixed(2);
+  tt.textContent=t.toFixed(2);
+  const d=y-t;
+  res.textContent=d>=0.6?"Lose 💀":d<=-0.6?"Win 🤑":"Fair 🤝";
 }
 
 function show(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
-
-updateTotals();
 </script>
 
 </body>
 </html>
-
-
-
