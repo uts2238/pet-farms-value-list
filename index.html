@@ -344,7 +344,7 @@
       const sig = +signed.value;
       const goldVal = +gold.value;
 
-      const boost = Math.max(sig * goldVal, 2.7);
+      const boost = sig === 1 && goldVal === 1 ? 1 : sig * goldVal;
 
       const val = (p.base * amtVal * boost).toFixed(2);
 
@@ -404,4 +404,5 @@
   </script>
 </body>
 </html>
+
 
