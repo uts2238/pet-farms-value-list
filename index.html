@@ -364,7 +364,6 @@
         <span class="value">${val}</span>
       `;
 
-      // click to remove (same)
       el.onclick = () => { el.remove(); updateTotals(); };
 
       document.querySelector(`#${currentSide} .list`).appendChild(el);
@@ -386,7 +385,6 @@
 
       const d = y - t;
 
-      // same logic:
       res.textContent = d >= 0.6 ? "Lose 💀" : d <= -0.6 ? "Win 🤑" : "Fair 🤝";
     }
 
@@ -394,17 +392,11 @@
       document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
       document.getElementById(id).classList.add("active");
 
-      // Show Discord button only on home
       if (id === "home") discordBtn.classList.remove("hide");
       else discordBtn.classList.add("hide");
     }
 
-    // ensure correct on load
     show("home");
   </script>
 </body>
 </html>
-
-
-
-
