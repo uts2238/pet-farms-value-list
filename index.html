@@ -160,7 +160,6 @@
     }
     .modal-box h3{margin:0 0 6px}
 
-    /* Discord bottom button (only visible on Home tab via JS toggle) */
     .discord-btn{
       position:fixed;
       bottom:24px;
@@ -345,8 +344,7 @@
       const sig = +signed.value;
       const goldVal = +gold.value;
 
-      // same boost logic you had:
-      const boost = (sig > 1 && goldVal > 1) ? 2.7 : (sig * goldVal);
+      const boost = Math.max(sig * goldVal, 2.7);
 
       const val = (p.base * amtVal * boost).toFixed(2);
 
@@ -406,3 +404,4 @@
   </script>
 </body>
 </html>
+
