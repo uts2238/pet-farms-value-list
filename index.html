@@ -1,296 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Pet Farms Values (Unofficial)</title>
-<link rel="icon" href="https://tr.rbxcdn.com/180DAY-123646d05b93a274aa7d25dd13359704/256/256/Image/Webp/noFilter">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:linear-gradient(135deg,#8a2be2,#2979ff,#1de9b6);
-  --panel:#11152a;
-  --card:#161b36;
-  --text:#e8ecf1;
-  --muted:#a1aacf;
-  --accent:#8a2be2;
-  --win:#3cff9a;
-  --lose:#ff4c4c;
-  --fair:#ffeb3b;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Inter,sans-serif;
-  background:var(--bg);
-  background-size:400% 400%;
-  animation:bgAnim 15s ease infinite;
-  color:var(--text)
-}
-@keyframes bgAnim{
-  0%{background-position:0 0}
-  50%{background-position:100% 100%}
-  100%{background-position:0 0}
-}
-nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:16px 40px;
-  background:rgba(0,0,0,.5);
-  border-radius:0 0 20px 20px
-}
-nav b{font-size:18px}
-nav button{
-  background:none;
-  border:none;
-  color:var(--muted);
-  margin-left:20px;
-  cursor:pointer;
-  font-size:14px;
-  font-weight:600
-}
-nav button:hover{color:#fff}
-section{display:none;padding:40px;max-width:1400px;margin:auto}
-section.active{display:block}
-.hero{text-align:center}
-.hero img{width:120px;border-radius:20px;box-shadow:0 0 40px #fff}
-.hero h1{
-  margin:20px 0 10px;
-  background:linear-gradient(90deg,#8a2be2,#2979ff,#1de9b6);
-  -webkit-background-clip:text;
-  color:transparent;
-  font-size:32px
-}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
-.value-card{background:rgba(0,0,0,.4);border-radius:18px;padding:16px}
-.value-card img{width:100%;border-radius:14px}
-.trade{display:flex;flex-wrap:wrap;gap:30px}
-.trade-side{
-  flex:1;
-  background:rgba(0,0,0,.5);
-  border-radius:24px;
-  padding:25px;
-  min-width:280px
-}
-.pet{
-  display:flex;
-  gap:12px;
-  align-items:center;
-  background:rgba(0,0,0,.3);
-  border-radius:14px;
-  padding:12px;
-  margin-bottom:10px;
-  cursor:pointer;
-  position:relative
-}
-.pet img{width:60px;border-radius:12px;box-shadow:0 0 20px #fff}
-.pet .overlay{
-  position:absolute;
-  top:4px;
-  right:4px;
-  font-size:14px;
-  font-weight:bold;
-  color:#fff;
-  padding:2px 5px;
-  border-radius:4px;
-  background:goldenrod
-}
-.total{text-align:right;margin-top:12px;font-weight:600}
-.add{
-  width:64px;height:64px;
-  border:none;
-  border-radius:12px;
-  background:var(--accent);
-  cursor:pointer;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  font-weight:600;
-  color:black
-}
-.result{text-align:center;font-size:26px;margin-top:30px}
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.75);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  opacity:0;
-  pointer-events:none
-}
-.modal.show{opacity:1;pointer-events:auto}
-.modal-box{
-  background:rgba(0,0,0,.8);
-  padding:25px;
-  border-radius:22px;
-  width:320px
-}
-.modal-box select,.modal-box input{
-  width:100%;
-  padding:8px;
-  margin-top:5px;
-  border-radius:10px;
-  border:none;
-  background:#222;
-  color:white
-}
-</style>
+  <meta charset="UTF-8" />
+  <title>Pet Farms Values (Unofficial)</title>
+  <link rel="icon" href="https://tr.rbxcdn.com/180DAY-123646d05b93a274aa7d25dd13359704/256/256/Image/Webp/noFilter" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg:linear-gradient(135deg,#8a2be2,#2979ff,#1de9b6);
+      --panel:#11152a;
+      --card:#161b36;
+      --text:#e8ecf1;
+      --muted:#a1aacf;
+      --accent:#8a2be2;
+      --win:#3cff9a;
+      --lose:#ff4c4c;
+      --fair:#ffeb3b;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,sans-serif;
+      background:var(--bg);
+      background-size:400% 400%;
+      animation:bgAnim 15s ease infinite;
+      color:var(--text);
+    }
+    @keyframes bgAnim{
+      0%{background-position:0 0}
+      50%{background-position:100% 100%}
+      100%{background-position:0 0}
+    }
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:16px 40px;
+      background:rgba(0,0,0,.5);
+      border-radius:0 0 20px 20px;
+    }
+    nav b{font-size:18px}
+    nav button{
+      background:none;
+      border:none;
+      color:var(--muted);
+      margin-left:20px;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:600;
+    }
+    nav button:hover{color:#fff}
+
+    section{display:none;padding:40px;max-width:1400px;margin:auto}
+    section.active{display:block}
+
+    .hero{text-align:center}
+    .hero img{width:120px;border-radius:20px;box-shadow:0 0 40px #fff}
+    .hero h1{
+      margin:20px 0 10px;
+      background:linear-gradient(90deg,#8a2be2,#2979ff,#1de9b6);
+      -webkit-background-clip:text;
+      color:transparent;
+      font-size:32px;
+    }
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+    .value-card{background:rgba(0,0,0,.4);border-radius:18px;padding:16px}
+    .value-card img{width:100%;border-radius:14px}
+    .value-card b{display:block;margin-top:10px}
+    .value-card span{display:block;color:var(--muted);margin-top:6px;font-size:13px}
+
+    .trade{display:flex;flex-wrap:wrap;gap:30px}
+    .trade-side{
+      flex:1;
+      background:rgba(0,0,0,.5);
+      border-radius:24px;
+      padding:25px;
+      min-width:280px;
+    }
+
+    .pet{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      background:rgba(0,0,0,.3);
+      border-radius:14px;
+      padding:12px;
+      margin-bottom:10px;
+      cursor:pointer;
+      position:relative;
+    }
+    .pet img{width:60px;border-radius:12px;box-shadow:0 0 20px #fff}
+    .pet .overlay{
+      position:absolute;
+      top:4px;
+      right:4px;
+      font-size:14px;
+      font-weight:bold;
+      color:#fff;
+      padding:2px 5px;
+      border-radius:4px;
+      background:goldenrod;
+    }
+    .pet .value{
+      margin-left:auto;
+      font-weight:700;
+      color:#fff;
+    }
+
+    .total{text-align:right;margin-top:12px;font-weight:600}
+
+    .add{
+      width:64px;height:64px;
+      border:none;
+      border-radius:12px;
+      background:var(--accent);
+      cursor:pointer;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      font-weight:600;
+      color:black;
+      margin-top:12px;
+    }
+
+    .result{text-align:center;font-size:26px;margin-top:30px}
+
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.75);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .15s ease;
+    }
+    .modal.show{opacity:1;pointer-events:auto}
+    .modal-box{
+      background:rgba(0,0,0,.8);
+      padding:25px;
+      border-radius:22px;
+      width:320px;
+    }
+    .modal-box label{display:block;margin-top:10px;color:var(--muted);font-size:13px}
+    .modal-box select,.modal-box input{
+      width:100%;
+      padding:10px;
+      margin-top:6px;
+      border-radius:10px;
+      border:none;
+      background:#222;
+      color:white;
+      outline:none;
+    }
+    .modal-box h3{margin:0 0 6px}
+
+    /* Discord bottom button (only visible on Home tab via JS toggle) */
+    .discord-btn{
+      position:fixed;
+      bottom:24px;
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 18px;
+      background:rgba(88,101,242,0.95);
+      border-radius:999px;
+      text-decoration:none;
+      box-shadow:0 0 25px rgba(88,101,242,0.6);
+      transition:transform .2s ease, box-shadow .2s ease;
+      z-index:999;
+    }
+    .discord-btn:hover{
+      transform:translateX(-50%) scale(1.08);
+      box-shadow:0 0 40px rgba(88,101,242,0.9);
+    }
+    .discord-btn img{
+      width:28px;
+      height:28px;
+      border-radius:50%;
+    }
+    .discord-btn span{
+      color:white;
+      font-weight:700;
+      font-size:14px;
+      white-space:nowrap;
+    }
+    .discord-btn.hide{display:none}
+  </style>
 </head>
+
 <body>
-
-<nav>
-  <b>Pet Farms Values (Unofficial)</b>
-  <div>
-    <button onclick="show('home')">Home</button>
-    <button onclick="show('values')">Value List</button>
-    <button onclick="show('trade')">Trade Calculator</button>
-  </div>
-</nav>
-
-<section id="home" class="active">
-  <div class="hero">
-    <img src="https://tr.rbxcdn.com/180DAY-c750c0a2010cecc8b6dc12fb253428a2/768/432/Image/Webp/noFilter">
-    <h1>Welcome to Pet Farms Values Trade Vault</h1>
-    <p>Check values, trade smart, win more!</p>
-    <p>1 value = 1k gems 💎</p>
-  </div>
-</section>
-
-<section id="values">
-  <h2>Pet Values</h2>
-  <div class="grid" id="valueGrid"></div>
-</section>
-
-<section id="trade">
-  <div class="trade">
-    <div class="trade-side" id="you">
-      <h3>Your Offer</h3>
-      <div class="list"></div>
-      <button class="add" onclick="openModal('you')">
-        <div style="font-size:28px;">+</div>
-        <div style="font-size:12px;">Add Pet</div>
-      </button>
-      <div class="total">Total: <span id="yt">0</span></div>
+  <nav>
+    <b>Pet Farms Values (Unofficial)</b>
+    <div>
+      <button type="button" onclick="show('home')">Home</button>
+      <button type="button" onclick="show('values')">Value List</button>
+      <button type="button" onclick="show('trade')">Trade Calculator</button>
     </div>
-    <div class="trade-side" id="them">
-      <h3>Their Offer</h3>
-      <div class="list"></div>
-      <button class="add" onclick="openModal('them')">
-        <div style="font-size:28px;">+</div>
-        <div style="font-size:12px;">Add Pet</div>
-      </button>
-      <div class="total">Total: <span id="tt">0</span></div>
+  </nav>
+
+  <section id="home" class="active">
+    <div class="hero">
+      <img src="https://tr.rbxcdn.com/180DAY-c750c0a2010cecc8b6dc12fb253428a2/768/432/Image/Webp/noFilter" alt="Pet Farms" />
+      <h1>Welcome to Pet Farms Values Trade Vault</h1>
+      <p>Check values, trade smart, win more!</p>
+      <p>1 value = 1k gems 💎</p>
+    </div>
+  </section>
+
+  <section id="values">
+    <h2>Pet Values</h2>
+    <div class="grid" id="valueGrid"></div>
+  </section>
+
+  <section id="trade">
+    <div class="trade">
+      <div class="trade-side" id="you">
+        <h3>Your Offer</h3>
+        <div class="list"></div>
+        <button class="add" type="button" onclick="openModal('you')">
+          <div style="font-size:28px;">+</div>
+          <div style="font-size:12px;">Add Pet</div>
+        </button>
+        <div class="total">Total: <span id="yt">0</span></div>
+      </div>
+
+      <div class="trade-side" id="them">
+        <h3>Their Offer</h3>
+        <div class="list"></div>
+        <button class="add" type="button" onclick="openModal('them')">
+          <div style="font-size:28px;">+</div>
+          <div style="font-size:12px;">Add Pet</div>
+        </button>
+        <div class="total">Total: <span id="tt">0</span></div>
+      </div>
+    </div>
+
+    <div class="result" id="res">Fair 🤝</div>
+  </section>
+
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <h3>Add Pet</h3>
+
+      <label>Pet</label>
+      <select id="petSelect"></select>
+
+      <label>Amount</label>
+      <input type="number" id="amt" value="1" min="1" />
+
+      <label>Signed?</label>
+      <select id="signed">
+        <option value="1">No</option>
+        <option value="1.3">Yes</option>
+      </select>
+
+      <label>Gold?</label>
+      <select id="gold">
+        <option value="1">No</option>
+        <option value="3.5">Yes</option>
+      </select>
+
+      <button class="add" type="button" onclick="addPet()">Add</button>
     </div>
   </div>
-  <div class="result" id="res">Fair 🤝</div>
-</section>
 
-<div class="modal" id="modal">
-  <div class="modal-box">
-    <h3>Add Pet</h3>
-    <label>Pet</label>
-    <select id="petSelect"></select>
-    <label>Amount</label>
-    <input type="number" id="amt" value="1" min="1">
-    <label>Signed?</label>
-    <select id="signed">
-      <option value="1">No</option>
-      <option value="1.3">Yes</option>
-    </select>
-    <label>Gold?</label>
-    <select id="gold">
-      <option value="1">No</option>
-      <option value="3.5">Yes</option>
-    </select>
-    <button class="add" onclick="addPet()">Add</button>
-  </div>
-</div>
+  <a href="https://discord.gg/Zjhen2TQ" target="_blank" class="discord-btn" id="discordBtn">
+    <img src="discord.png" alt="Discord" />
+    <span>Join our Discord!</span>
+  </a>
 
-<script>
-const pets=[
-  {name:"OG Dominus Huge",img:"HugeOgDominus.png",base:271.9,demand:10},
-  {name:"Mouse Huge",img:"HugeMouse.jpg",base:30.2,demand:3},
-  {name:"Bird Huge",img:"HugeBird.jpg",base:86.3,demand:4},
-  {name:"Huge Turtle",img:"HugeTurtle.jpg",base:107.9,demand:6},
-  {name:"Huge Reindeer",img:"HugeReindeer.jpg",base:82,demand:8},
-  {name:"Huge Magma Dragon",img:"HugeMagmaDragon.jpg",base:130,demand:10},
-  {name:"Huge Scorpion",img:"HugeScorpion.jpg",base:58.2,demand:7},
-  {name:"OG Dog",img:"OG_Dog.png",base:2.35,demand:1},
-  {name:"OG Bunny",img:"OG_Bunny.png",base:4.35,demand:3},
-  {name:"OG Serpent",img:"OG_Serpant.png",base:8.35,demand:5},
-  {name:"Magma Griffin",img:"MagmaGriffen.png",base:1.35,demand:3}
-];
+  <script>
+    const pets = [
+      {name:"OG Dominus Huge",img:"HugeOgDominus.png",base:271.9,demand:10},
+      {name:"Mouse Huge",img:"HugeMouse.jpg",base:30.2,demand:3},
+      {name:"Bird Huge",img:"HugeBird.jpg",base:86.3,demand:4},
+      {name:"Huge Turtle",img:"HugeTurtle.jpg",base:107.9,demand:6},
+      {name:"Huge Reindeer",img:"HugeReindeer.jpg",base:82,demand:8},
+      {name:"Huge Magma Dragon",img:"HugeMagmaDragon.jpg",base:130,demand:10},
+      {name:"Huge Scorpion",img:"HugeScorpion.jpg",base:58.2,demand:7},
+      {name:"OG Dog",img:"OG_Dog.png",base:2.35,demand:1},
+      {name:"OG Bunny",img:"OG_Bunny.png",base:4.35,demand:3},
+      {name:"OG Serpent",img:"OG_Serpant.png",base:8.35,demand:5},
+      {name:"Magma Griffin",img:"MagmaGriffen.png",base:1.35,demand:3}
+    ];
 
-const valueGrid=document.getElementById("valueGrid");
-const petSelect=document.getElementById("petSelect");
+    const valueGrid = document.getElementById("valueGrid");
+    const petSelect = document.getElementById("petSelect");
+    const modal = document.getElementById("modal");
+    const discordBtn = document.getElementById("discordBtn");
 
-function rebuild(){
-  valueGrid.innerHTML="";
-  petSelect.innerHTML="";
-  pets.forEach((p,i)=>{
-    const c=document.createElement("div");
-    c.className="value-card";
-    c.innerHTML=`<img src="${p.img}"><b>${p.name}</b><span>Base: ${p.base} | Demand: ${p.demand}/10</span>`;
-    valueGrid.appendChild(c);
-    const o=document.createElement("option");
-    o.value=i;
-    o.textContent=p.name;
-    petSelect.appendChild(o);
-  });
-}
-rebuild();
+    const yt = document.getElementById("yt");
+    const tt = document.getElementById("tt");
+    const res = document.getElementById("res");
 
-let currentSide="you";
-const modal=document.getElementById("modal");
-modal.onclick=e=>{if(e.target===modal)modal.classList.remove("show")};
+    const amt = document.getElementById("amt");
+    const signed = document.getElementById("signed");
+    const gold = document.getElementById("gold");
 
-function openModal(side){
-  currentSide=side;
-  modal.classList.add("show");
-}
+    let currentSide = "you";
 
-function addPet(){
-  const p=pets[+petSelect.value];
-  const amtVal=+amt.value||1;
-  const sig=+signed.value;
-  const goldVal=+gold.value;
-  const boost=(sig>1&&goldVal>1)?2.7:sig*goldVal;
-  const val=(p.base*amtVal*boost).toFixed(2);
+    function rebuild(){
+      valueGrid.innerHTML = "";
+      petSelect.innerHTML = "";
 
-  let overlay="";
-  if(sig>1)overlay+="✍️ ";
-  if(goldVal>1)overlay+="💰";
+      pets.forEach((p,i)=>{
+        const c = document.createElement("div");
+        c.className = "value-card";
+        c.innerHTML = `
+          <img src="${p.img}" alt="${p.name}">
+          <b>${p.name}</b>
+          <span>Base: ${p.base} | Demand: ${p.demand}/10</span>
+        `;
+        valueGrid.appendChild(c);
 
-  const el=document.createElement("div");
-  el.className="pet";
-  el.innerHTML=`<img src="${p.img}">${overlay?`<div class="overlay">${overlay}</div>`:""}<div><b>${p.name} x${amtVal}</b> Demand ${p.demand}/10</div><span class="value">${val}</span>`;
-  el.onclick=()=>{el.remove();updateTotals()};
-  document.querySelector(`#${currentSide} .list`).appendChild(el);
-  modal.classList.remove("show");
-  updateTotals();
-}
+        const o = document.createElement("option");
+        o.value = i;
+        o.textContent = p.name;
+        petSelect.appendChild(o);
+      });
+    }
+    rebuild();
 
-function updateTotals(){
-  const sum=s=>[...document.querySelectorAll(`#${s} .value`)].reduce((a,b)=>a+ +b.textContent,0);
-  const y=sum("you");
-  const t=sum("them");
-  yt.textContent=y.toFixed(2);
-  tt.textContent=t.toFixed(2);
-  const d=y-t;
-  res.textContent=d>=0.6?"Lose 💀":d<=-0.6?"Win 🤑":"Fair 🤝";
-}
+ 
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.classList.remove("show");
+    });
 
-function show(id){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
-</script>
+    function openModal(side){
+      currentSide = side;
+      modal.classList.add("show");
+    }
 
+    function addPet(){
+      const p = pets[+petSelect.value];
+      const amtVal = +amt.value || 1;
+      const sig = +signed.value;
+      const goldVal = +gold.value;
+
+      // same boost logic you had:
+      const boost = (sig > 1 && goldVal > 1) ? 2.7 : (sig * goldVal);
+
+      const val = (p.base * amtVal * boost).toFixed(2);
+
+      let overlay = "";
+      if (sig > 1) overlay += "✍️ ";
+      if (goldVal > 1) overlay += "💰";
+
+      const el = document.createElement("div");
+      el.className = "pet";
+      el.innerHTML = `
+        <img src="${p.img}" alt="${p.name}">
+        ${overlay ? `<div class="overlay">${overlay}</div>` : ""}
+        <div>
+          <b>${p.name} x${amtVal}</b>
+          <div style="color:var(--muted);font-size:13px;">Demand ${p.demand}/10</div>
+        </div>
+        <span class="value">${val}</span>
+      `;
+
+      // click to remove (same)
+      el.onclick = () => { el.remove(); updateTotals(); };
+
+      document.querySelector(`#${currentSide} .list`).appendChild(el);
+
+      modal.classList.remove("show");
+      updateTotals();
+    }
+
+    function updateTotals(){
+      const sum = (side) =>
+        [...document.querySelectorAll(`#${side} .value`)]
+          .reduce((a,b)=> a + (+b.textContent || 0), 0);
+
+      const y = sum("you");
+      const t = sum("them");
+
+      yt.textContent = y.toFixed(2);
+      tt.textContent = t.toFixed(2);
+
+      const d = y - t;
+
+      // same logic:
+      res.textContent = d >= 0.6 ? "Lose 💀" : d <= -0.6 ? "Win 🤑" : "Fair 🤝";
+    }
+
+    function show(id){
+      document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+
+      // Show Discord button only on home
+      if (id === "home") discordBtn.classList.remove("hide");
+      else discordBtn.classList.add("hide");
+    }
+
+    // ensure correct on load
+    show("home");
+  </script>
 </body>
 </html>
-
-
-
-
