@@ -264,7 +264,7 @@
       <label>Gold?</label>
       <select id="gold">
         <option value="1">No</option>
-        <option value="3.5">Yes</option>
+        <option value="3">Yes</option>
       </select>
 
       <button class="add" type="button" onclick="addPet()">Add</button>
@@ -344,7 +344,7 @@
       const sig = +signed.value;
       const goldVal = +gold.value;
 
-      const boost = sig > 1 && goldVal > 1 ? 3.8 : sig * goldVal;
+      const boost = sig > 1 && goldVal > 1 ? 3.15 : sig * goldVal;
 
       const val = (p.base * amtVal * boost).toFixed(2);
 
@@ -400,5 +400,6 @@
   </script>
 </body>
 </html>
+
 
 
