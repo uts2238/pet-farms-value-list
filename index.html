@@ -110,6 +110,34 @@
       color:#fff;
     }
 
+    .variant-row{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+  flex-wrap:wrap;
+}
+.vbtn{
+  border:none;
+  padding:6px 10px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:700;
+  font-size:12px;
+  background:rgba(255,255,255,.08);
+  color:var(--text);
+}
+.vbtn:hover{background:rgba(255,255,255,.15)}
+.vbtn.active{
+  background:var(--accent);
+  color:#000;
+}
+.value-line{
+  margin-top:8px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+
     .total{text-align:right;margin-top:12px;font-weight:600}
 
     .add{
@@ -308,27 +336,74 @@ const pets = [
 
     let currentSide = "you";
 
-    function rebuild(){
-      valueGrid.innerHTML = "";
-      petSelect.innerHTML = "";
+ const MULTS = {
+  normal: 1,
+  golden: 3,
+  signed: 1.15,
+  both: 3.15 // your special-case logic
+};
 
-      pets.forEach((p,i)=>{
-        const c = document.createElement("div");
-        c.className = "value-card";
-        c.innerHTML = `
-          <img src="${p.img}" alt="${p.name}">
-          <b>${p.name}</b>
-          <span>Base: ${p.base} | Demand: ${p.demand}/10</span>
-        `;
-        valueGrid.appendChild(c);
+function calcValue(base, mode){
+  const m = MULTS[mode] ?? 1;
+  return (base * m);
+}
 
-        const o = document.createElement("option");
-        o.value = i;
-        o.textContent = p.name;
-        petSelect.appendChild(o);
+function rebuild(){
+  valueGrid.innerHTML = "";
+  petSelect.innerHTML = "";
+
+  console.log("Pets loaded:", pets.length, pets.map(p => p?.name)); // sanity log
+
+  pets.forEach((p, i) => {
+    // Dropdown for trade calc
+    const o = document.createElement("option");
+    o.value = i;
+    o.textContent = p.name;
+    petSelect.appendChild(o);
+
+    // Card for value list
+    const c = document.createElement("div");
+    c.className = "value-card";
+
+    const baseNum = +p.base || 0;
+
+    c.innerHTML = `
+      <img src="${p.img}" alt="${p.name}">
+      <b>${p.name}</b>
+
+      <div class="variant-row">
+        <button class="vbtn active" data-mode="normal">Normal</button>
+        <button class="vbtn" data-mode="golden">Golden</button>
+        <button class="vbtn" data-mode="signed">Signed</button>
+        <button class="vbtn" data-mode="both">Golden + Signed</button>
+      </div>
+
+      <div class="value-line">
+        Value: <span class="shownVal">${calcValue(baseNum,"normal").toFixed(2)}</span>
+        <span style="opacity:.75;"> | Demand: ${p.demand}/10</span>
+      </div>
+    `;
+
+    // Button behavior (updates displayed value on the card)
+    const shownVal = c.querySelector(".shownVal");
+    const buttons = [...c.querySelectorAll(".vbtn")];
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const mode = btn.dataset.mode;
+        shownVal.textContent = calcValue(baseNum, mode).toFixed(2);
       });
-    }
-    rebuild();
+    });
+
+    valueGrid.appendChild(c);
+  });
+}
+
+rebuild();
+
 
  
     modal.addEventListener("click", (e) => {
@@ -402,6 +477,7 @@ const pets = [
   </script>
 </body>
 </html>
+
 
 
 
