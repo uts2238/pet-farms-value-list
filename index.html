@@ -337,9 +337,9 @@ const pets = [
 
  const MULTS = {
   normal: 1,
-  golden: 3,
+  golden: 2.8,
   signed: 1.15,
-  both: 3.15 // your special-case logic
+  both: 2.95 // your special-case logic
 };
 
 function calcValue(base, mode){
@@ -420,7 +420,7 @@ rebuild();
       const sig = +signed.value;
       const goldVal = +gold.value;
 
-      const boost = sig > 1 && goldVal > 1 ? 3.15 : sig * goldVal;
+      const boost = sig > 1 && goldVal > 1 ? 2.95 : sig * goldVal;
 
       const val = (p.base * amtVal * boost).toFixed(2);
 
@@ -476,6 +476,7 @@ rebuild();
   </script>
 </body>
 </html>
+
 
 
 
